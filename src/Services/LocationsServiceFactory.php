@@ -8,7 +8,8 @@ use LaravelRoad\IBGELocaltions\Exceptions\DriverUnsupportedException;
 class LocationsServiceFactory
 {
     public const DRIVERS = [
-        'api' => LocationsApiService::class
+        'api' => LocationsApiService::class,
+        'db' => LocationsDbService::class,
     ];
 
     /**

@@ -31,11 +31,11 @@ class LocationsApiService implements LocationsServiceInterface
      */
     public function getStates(): Collection
     {
-        if (! Cache::has( 'states')) {
-            Cache::put('states', State::collection($this->fetchStates()->object()), 3600);
+        if (! Cache::has( 'states_api')) {
+            Cache::put('states_api', State::collection($this->fetchStates()->object()), 3600);
         }
 
-        return Cache::get('states');
+        return Cache::get('states_api');
     }
 
     /**
@@ -44,11 +44,11 @@ class LocationsApiService implements LocationsServiceInterface
      */
     public function getCities(string $state): Collection
     {
-        if (! Cache::has( $state . '_cities')) {
-            Cache::put($state . '_cities', City::collection($this->fetchCities($state)->object()), 3600);
+        if (! Cache::has( $state . '_cities_api')) {
+            Cache::put($state . '_cities_api', City::collection($this->fetchCities($state)->object()), 3600);
         }
 
-        return Cache::get($state . '_cities');
+        return Cache::get($state . '_cities_api');
     }
 
     /**
