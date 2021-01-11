@@ -3,6 +3,7 @@
 namespace LaravelRoad\IBGELocaltions\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use LaravelRoad\IBGELocaltions\Console\InstallCommand;
 use LaravelRoad\IBGELocaltions\Services\LocationsServiceFactory;
 use LaravelRoad\IBGELocaltions\Services\LocationsServiceInterface;
 
@@ -52,5 +53,23 @@ class LocationsServiceProvider extends ServiceProvider
         $this->publishes([
             self::ROOT_PATH . '/database/seeders/LocationsTableSeeder.php' => database_path('seeders/LocationsTableSeeder.php'),
         ], 'ibge-locations-seeders');
+
+        $this->configureCommands();
+    }
+
+    /**
+     * Configure the commands offered by the application.
+     *
+     * @return void
+     */
+    protected function configureCommands()
+    {
+        if (! $this->app->runningInConsole()) {
+            return;
+        }
+
+        $this->commands([
+            InstallCommand::class,
+        ]);
     }
 }
