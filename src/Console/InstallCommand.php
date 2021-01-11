@@ -28,10 +28,10 @@ class InstallCommand extends Command
     public function handle()
     {
         $this->callSilent('vendor:publish', ['--tag' => 'ibge-locations-config', '--force' => true]);
-        $this->call('vendor:publish', ['--tag' => 'ibge-locations--migrations', '--force' => true]);
-        $this->call('vendor:publish', ['--tag' => 'ibge-locations--seeds', '--force' => true]);
+        $this->call('vendor:publish', ['--tag' => 'ibge-locations-migrations', '--force' => true]);
+        $this->call('vendor:publish', ['--tag' => 'ibge-locations-seeders', '--force' => true]);
 
-        $this->call('migrate');
-        $this->call('db:seed --class LocationsTableSeeder');
+        $this->call('migrate', ['--force' => true]);
+        $this->call('db:seed', ['--class' => 'LocationsTableSeeder']);
     }
 }
