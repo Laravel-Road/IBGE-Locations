@@ -24,9 +24,9 @@ class LocationsServiceProvider extends ServiceProvider
             self::ROOT_PATH . '/config/ibge-locations.php', 'ibge-locations'
         );
 
-        $this->app->bind(LocationsServiceInterface::class, function () {
-            return new LocationsApiService();
-        });
+        $this->app->bind(LocationsServiceInterface::class, LocationsApiService::class);
+
+        $this->app->singleton('IBGELocations', LocationsServiceInterface::class);
     }
 
     /**

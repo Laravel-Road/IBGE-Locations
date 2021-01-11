@@ -4,6 +4,8 @@ namespace LaravelRoad\IBGELocaltions\Tests;
 
 use LaravelRoad\IBGELocaltions\Providers\LocationsServiceProvider;
 use Illuminate\Foundation\Application;
+use LaravelRoad\IBGELocaltions\Services\LocationsApiService;
+use LaravelRoad\IBGELocaltions\Services\LocationsServiceInterface;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 abstract class TestCase extends Orchestra
@@ -19,6 +21,20 @@ abstract class TestCase extends Orchestra
     {
         return [
             LocationsServiceProvider::class,
+        ];
+    }
+
+    /**
+     * Get package aliases.
+     *
+     * @param  \Illuminate\Foundation\Application  $app
+     *
+     * @return array
+     */
+    protected function getPackageAliases($app)
+    {
+        return [
+            'IBGELocations' => LocationsApiService::class,
         ];
     }
 

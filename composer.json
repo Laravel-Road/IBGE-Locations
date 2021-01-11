@@ -31,7 +31,10 @@
         "laravel": {
             "providers": [
                 "LaravelRoad\\IBGELocaltions\\Providers\\LocationsServiceProvider"
-            ]
+            ],
+            "aliases": {
+               "IBGELocations" : "LaravelRoad\\IBGELocaltions\\Facades\\Locations"
+            }
         }
     }
 }
