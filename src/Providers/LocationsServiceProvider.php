@@ -45,13 +45,12 @@ class LocationsServiceProvider extends ServiceProvider
         ], 'ibge-locations-config');
 
         $this->publishes([
-            self::ROOT_PATH.'/database/migrations/2020_01_11_000000_create_states_table.php' => database_path('migrations/20020_01_11_000000_create_states_table.php'),
-            self::ROOT_PATH.'/database/migrations/2020_01_11_100000_create_cities_table.php' => database_path('migrations/2020_01_11_100000_create_cities_table.php'),
+            self::ROOT_PATH.'/database/migrations/2021_01_11_000000_create_states_table.php' => database_path('migrations/2021_01_11_000000_create_states_table.php'),
+            self::ROOT_PATH.'/database/migrations/2021_01_11_100000_create_cities_table.php' => database_path('migrations/2021_01_11_100000_create_cities_table.php'),
         ], 'ibge-locations-migrations');
 
         $this->publishes([
-            self::ROOT_PATH . '/database/seeds/StatesTableSeeder' => database_path('seeds/StatesTableSeeder'),
-            self::ROOT_PATH . '/database/seeds/CitiesTableSeeder' => database_path('seeds/CitiesTableSeeder'),
-        ], 'ibge-locations-seeds');
+            self::ROOT_PATH . '/database/seeders/LocationsTableSeeder.php' => database_path('seeders/LocationsTableSeeder.php'),
+        ], 'ibge-locations-seeders');
     }
 }
