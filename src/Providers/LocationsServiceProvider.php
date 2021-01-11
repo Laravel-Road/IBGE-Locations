@@ -2,11 +2,10 @@
 
 namespace LaravelRoad\IBGELocaltions\Providers;
 
-use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;
 use LaravelRoad\IBGELocaltions\Services\LocationsService;
 
-class LocationsServiceProvider extends ServiceProvider implements DeferrableProvider
+class LocationsServiceProvider extends ServiceProvider
 {
     /**
      * Relative path to the root
