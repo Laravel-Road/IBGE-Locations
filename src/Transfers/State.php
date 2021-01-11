@@ -6,7 +6,7 @@ use Illuminate\Support\Collection;
 
 class State
 {
-    public int $id;
+    public int $code;
     public string $name;
     public string $initials;
 
@@ -16,7 +16,7 @@ class State
      */
     public function __construct(Object $state)
     {
-        $this->id = (int) $state->id;
+        $this->code = (int) $state->id;
         $this->name = $state->nome;
         $this->initials = $state->sigla;
     }

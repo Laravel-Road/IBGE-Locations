@@ -6,7 +6,7 @@ use Illuminate\Support\Collection;
 
 class City
 {
-    public int $id;
+    public int $code;
     public string $name;
 
     /**
@@ -15,7 +15,7 @@ class City
      */
     public function __construct(Object $city)
     {
-        $this->id = (int) $city->id;
+        $this->code = (int) $city->id;
         $this->name = $city->nome;
     }
 
