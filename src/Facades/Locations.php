@@ -2,20 +2,20 @@
 
 namespace LaravelRoad\IBGELocaltions\Facades;
 
-use LaravelRoad\IBGELocaltions\Services\LocationsService;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Facade;
+use LaravelRoad\IBGELocaltions\Services\LocationsServiceInterface;
 
 /**
  * @method static Collection getStates()
- * @method static Collection getCities(string $state)
+ * @method static Collection getCities(string $stateInitials)
  *
- * @see \LaravelRoad\IBGELocaltions\Services\LocationsService
+ * @see \LaravelRoad\IBGELocaltions\Services\LocationsApiService
  */
 class Locations extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return LocationsService::class;
+        return LocationsServiceInterface::class;
     }
 }

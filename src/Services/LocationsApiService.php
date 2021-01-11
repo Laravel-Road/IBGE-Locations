@@ -11,7 +11,7 @@ use LaravelRoad\IBGELocaltions\Transfers\State;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 
-class LocationsService implements LocationsServiceInterface
+class LocationsApiService implements LocationsServiceInterface
 {
     /**
      * @var PendingRequest
