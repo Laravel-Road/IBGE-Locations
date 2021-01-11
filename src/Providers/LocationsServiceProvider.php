@@ -2,9 +2,7 @@
 
 namespace LaravelRoad\IBGELocaltions\Providers;
 
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
-use LaravelRoad\IBGELocaltions\Services\LocationsApiService;
 use LaravelRoad\IBGELocaltions\Services\LocationsServiceFactory;
 use LaravelRoad\IBGELocaltions\Services\LocationsServiceInterface;
 
@@ -40,6 +38,8 @@ class LocationsServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->loadMigrationsFrom(self::ROOT_PATH . '/database/migrations');
+
         $this->publishes([
             self::ROOT_PATH . '/config/ibge-locations.php' => config_path('ibge-locations.php'),
         ], 'ibge-locations-config');
