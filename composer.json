@@ -30,7 +30,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "LaravelRoad\\IBGELocaltions\\LocationsServiceProvider"
+                "LaravelRoad\\IBGELocaltions\\Providers\\LocationsServiceProvider"
             ]
         }
     }
