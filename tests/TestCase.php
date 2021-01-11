@@ -46,6 +46,7 @@ abstract class TestCase extends Orchestra
      */
     protected function getEnvironmentSetUp($app)
     {
+        $app['config']->set('ibge-locations.driver', 'api');
         $app['config']->set('ibge-locations.baseUrl', 'https://servicodados.ibge.gov.br/api/v1/localidades');
         $app['config']->set('ibge-locations.states.orderBy', 'nome');
     }

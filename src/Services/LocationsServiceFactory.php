@@ -3,6 +3,7 @@
 namespace LaravelRoad\IBGELocaltions\Services;
 
 use Illuminate\Support\Facades\Config;
+use LaravelRoad\IBGELocaltions\Exceptions\DriverUnsupportedException;
 
 class LocationsServiceFactory
 {
@@ -10,8 +11,16 @@ class LocationsServiceFactory
         'api' => LocationsApiService::class
     ];
 
-    public static function create()
+    /**
+     * @return LocationsServiceInterface
+     * @throws DriverUnsupportedException
+     */
+    public static function create(): LocationsServiceInterface
     {
+        if(! key_exists(Config::get('ibge-locations.driver'),self::DRIVERS)) {
+            throw new DriverUnsupportedException();
+        }
+
         $class = self::DRIVERS[Config::get('ibge-locations.driver')];
 
         return new $class();
