@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Http;
 
 class LocationsApiService implements LocationsServiceInterface
 {
+    private const MAPPER = [
+        'code' => 'id',
+        'name' => 'nome',
+        'initials' => 'sigla',
+    ];
+
     /**
      * @var PendingRequest
      */
@@ -56,7 +62,7 @@ class LocationsApiService implements LocationsServiceInterface
      */
     private function fetchStates(): Response
     {
-        return $this->client->get('/estados', ['orderBy' => Config::get('ibge-locations.states.orderBy')]);
+        return $this->client->get('/estados', ['orderBy' => self::MAPPER[Config::get('ibge-locations.states.orderBy')]]);
     }
 
     /**
