@@ -2,8 +2,10 @@
 
 namespace LaravelRoad\IBGELocaltions\Providers;
 
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
 use LaravelRoad\IBGELocaltions\Services\LocationsApiService;
+use LaravelRoad\IBGELocaltions\Services\LocationsServiceFactory;
 use LaravelRoad\IBGELocaltions\Services\LocationsServiceInterface;
 
 class LocationsServiceProvider extends ServiceProvider
@@ -24,7 +26,9 @@ class LocationsServiceProvider extends ServiceProvider
             self::ROOT_PATH . '/config/ibge-locations.php', 'ibge-locations'
         );
 
-        $this->app->bind(LocationsServiceInterface::class, LocationsApiService::class);
+        $this->app->bind(LocationsServiceInterface::class, function () {
+            return LocationsServiceFactory::create();
+        });
 
         $this->app->singleton('IBGELocations', LocationsServiceInterface::class);
     }
