@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Http;
 
 class LocationsApiService implements LocationsServiceInterface
 {
-    private const MAPPER = [
+    private const FIELD_MAPPER = [
         'code' => 'id',
         'name' => 'nome',
         'initials' => 'sigla',
@@ -45,16 +45,16 @@ class LocationsApiService implements LocationsServiceInterface
     }
 
     /**
-     * @param string $state
+     * @param string $stateInitials
      * @return Collection
      */
-    public function getCities(string $state): Collection
+    public function getCities(string $stateInitials): Collection
     {
-        if (! Cache::has( $state . '_cities_api')) {
-            Cache::put($state . '_cities_api', City::collection($this->fetchCities($state)->object()), 3600);
+        if (! Cache::has( $stateInitials . '_cities_api')) {
+            Cache::put($stateInitials . '_cities_api', City::collection($this->fetchCities($stateInitials)->object()), 3600);
         }
 
-        return Cache::get($state . '_cities_api');
+        return Cache::get($stateInitials . '_cities_api');
     }
 
     /**
@@ -62,15 +62,15 @@ class LocationsApiService implements LocationsServiceInterface
      */
     private function fetchStates(): Response
     {
-        return $this->client->get('/estados', ['orderBy' => self::MAPPER[Config::get('ibge-locations.states.orderBy')]]);
+        return $this->client->get('/estados', ['orderBy' => self::FIELD_MAPPER[Config::get('ibge-locations.states.orderBy')]]);
     }
 
     /**
-     * @param string $state
+     * @param string $stateInitials
      * @return Response
      */
-    private function fetchCities(string $state): Response
+    private function fetchCities(string $stateInitials): Response
     {
-        return $this->client->get("/estados/{$state}/municipios");
+        return $this->client->get("/estados/{$stateInitials}/municipios");
     }
 }

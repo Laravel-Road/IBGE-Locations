@@ -4,7 +4,7 @@
 ```shell script
 composer require laravel-road/ibge-locations
 
-php artisan ibge-locations:install
+php artisan ibge-locations:install // optional, but necessary to use the db driver
 ```
 
 ## How to use
